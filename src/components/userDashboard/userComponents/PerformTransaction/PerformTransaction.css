@@ -1,0 +1,95 @@
+/* PerformTransaction.css */
+
+/* Container for the transaction form */
+.perform-transaction-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.perform-transaction-container h1 {
+  color: #d32f2f; /* Red color matching the theme */
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Form input and select styling */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #d32f2f;
+  box-shadow: 0 0 5px rgba(211, 47, 47, 0.5);
+}
+
+/* Button styling */
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+
+/* Back button styling */
+.button {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  background-color: #757575;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #616161; /* Darker gray on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .perform-transaction-container {
+    padding: 20px;
+  }
+
+  .submit-button, .button {
+    font-size: 14px;
+  }
+}

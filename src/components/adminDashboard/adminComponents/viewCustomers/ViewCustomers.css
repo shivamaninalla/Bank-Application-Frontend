@@ -1,0 +1,31 @@
+.view-customers-container {
+  margin: 40px auto;
+  padding: 30px;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.title {
+  font-size: 24px;
+  color: #e07a5f;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Back Button Styles */
+.back-button {
+  background-color: #a0a0a0;
+  color: #ffffff;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px 14px;
+}
+
+.back-button:hover {
+  background-color: #ffffff;
+  color: #a0a0a0;
+  border: 1px solid #a0a0a0;
+}

@@ -1,0 +1,116 @@
+/* ViewPassbook.css */
+
+/* Container for the View Passbook component */
+.view-transactions-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styling */
+.view-transactions-container .title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #d32f2f; /* Red color matching the theme */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Back button styling */
+.button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #757575;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #616161; /* Darker gray on hover */
+}
+
+/* Filter section styling */
+.view-transactions-container .view-passbook-filter {
+  margin-bottom: 20px;
+}
+
+/* Table styling */
+.view-transactions-container .table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.view-transactions-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.view-transactions-container table th,
+.view-transactions-container table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.view-transactions-container table th {
+  background-color: #d32f2f;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+}
+
+.view-transactions-container table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Pagination controls */
+.view-transactions-container .pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.view-transactions-container .pagination button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-transactions-container .pagination button:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .view-transactions-container {
+    padding: 20px;
+  }
+
+  .view-transactions-container .title {
+    font-size: 24px;
+  }
+
+  .view-transactions-container table th, 
+  .view-transactions-container table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .view-transactions-container .pagination {
+    justify-content: center;
+  }
+}

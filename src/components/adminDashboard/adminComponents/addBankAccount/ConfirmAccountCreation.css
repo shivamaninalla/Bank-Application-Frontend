@@ -1,0 +1,84 @@
+/* ConfirmAccountCreation.css */
+
+/* Container for the confirmation page */
+.confirmation-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header styling */
+.confirmation-container h2 {
+  color: #d32f2f; /* Red color matching the theme */
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Paragraph styling */
+.confirmation-container p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Styling for the confirmation details */
+.confirmation-details p {
+  font-size: 18px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.confirmation-details strong {
+  color: #d32f2f;
+}
+
+/* Button styling */
+.confirmation-actions {
+  margin-top: 20px;
+}
+
+.confirmation-actions .btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirmation-actions .btn-primary {
+  background-color: #d32f2f; /* Primary button with red background */
+  color: white;
+  border: none;
+}
+
+.confirmation-actions .btn-primary:hover {
+  background-color: #b71c1c; /* Darker shade on hover */
+}
+
+.confirmation-actions .btn-secondary {
+  background-color: #757575; /* Secondary button with gray background */
+  color: white;
+  border: none;
+}
+
+.confirmation-actions .btn-secondary:hover {
+  background-color: #616161; /* Darker gray on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .confirmation-container {
+    padding: 20px;
+  }
+
+  .confirmation-actions .btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
