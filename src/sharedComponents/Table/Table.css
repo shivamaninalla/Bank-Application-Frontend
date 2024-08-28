@@ -12,7 +12,7 @@
 }
 
 .table th {
-  background: #e07a5f;
+  background: #b00020; /* Red color */
   color: #ffffff;
   padding: 14px;
   text-align: left;
@@ -33,7 +33,7 @@
 }
 
 .table tr:hover td {
-  background: #e0e0e0;
+  background: #f0d6d6; /* Light red on hover */
   color: #333333;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .deactivate-button, .activate-button {
-  background-color: #e07a5f;
+  background-color: #b00020; /* Red color */
   color: white;
   border: none;
   padding: 5px 10px;
@@ -50,7 +50,7 @@
 }
 
 .deactivate-button:hover, .activate-button:hover {
-  background-color: #cc0000; /* Darker shade of red on hover */
+  background-color: #8b0000; /* Darker red on hover */
 }
 
 .pagination-section {
@@ -64,7 +64,7 @@
 }
 
 .button {
-  background-color: #e07a5f;
+  background-color: #b00020; /* Red color */
   color: #ffffff;
   border: 1px solid white;
   border-radius: 5px;
@@ -75,6 +75,6 @@
 .button:hover {
   cursor: pointer;
   background-color: #ffffff;
-  color: #e07a5f;
-  border: 1px solid #e07a5f;
+  color: #b00020; /* Red color */
+  border: 1px solid #b00020; /* Red border */
 }

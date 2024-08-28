@@ -84,12 +84,12 @@ const ViewPassbook = () => {
           </div>
           <div className="title">View Passbook</div>
           <ViewPassbookFilter
-            // dataList={transactions.content && transactions.content.length > 0 ? Object.keys(transactions.content[0]) : []}
+            dataList={transactions.content && transactions.content.length > 0 ? Object.keys(transactions.content[0]) : []}
             // setFromDate={setFromDate}
             // setToDate={setToDate}
             // setSortBy={setSortBy}
             // setDirection={setDirection}
-            data={transactions}
+            // data={transactions}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />

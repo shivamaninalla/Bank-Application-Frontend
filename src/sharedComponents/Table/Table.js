@@ -3,7 +3,7 @@ import './Table.css';
 import CustomPagination from "../Pagination/CustomPagination";
 import CustomDropdown from '../Dropdown/CustomDropdown';
 
-const Table = ({ data, setPage, setSize, customRenderers = {} }) => {
+const Table = ({ data, searchParams,setSearchParams,customRenderers = {} }) => {
   const content = data?.content || [];
 
   if (content.length > 0) {
@@ -42,8 +42,8 @@ const Table = ({ data, setPage, setSize, customRenderers = {} }) => {
           <tbody>{tableData}</tbody>
         </table>
         <div className="pagination-section">
-          <CustomDropdown setSize={setSize} setPage={setPage} data={data} className="custom-dropdown" />
-          <CustomPagination setPage={setPage} data={data} />
+          <CustomDropdown searchParams={searchParams} setSearchParams={setSearchParams} data={data} className="custom-dropdown" />
+          <CustomPagination searchParams={searchParams} setSearchParams={setSearchParams} data={data} />
         </div>
       </div>
     );

@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e07a5f;
+  background-color: #ff0000; /* Updated to red */
   border-radius: 2px;
   border: 1px solid white;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
@@ -41,20 +41,21 @@
 .pagination-item:hover,
 .pagination-control:hover {
   background-color: #ffffff;
-  border: 1px solid #e07a5f;
+  border: 1px solid #ff0000; /* Updated to red */
 }
 
 .pagination-item:hover > a,
 .pagination-control:hover > a {
-  color: #e07a5f;
+  color: #ff0000; /* Updated to red */
 }
+
 .pagination-item.active,
 .pagination-control.active {
   background-color: #ffffff;
-  border: 1px solid #e07a5f;
+  border: 1px solid #ff0000; /* Updated to red */
 }
 
 .pagination-item.active > a,
 .pagination-control.active > a {
-  color: #e07a5f;
+  color: #ff0000; /* Updated to red */
 }

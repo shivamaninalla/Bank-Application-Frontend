@@ -2,7 +2,8 @@ import React from "react";
 import "./ViewPassbookFilter.css";
 
 const ViewPassbookFilter = (props) => {
-  const options = props.dataList
+  const {dataList,searchParams,setSearchParams}=props
+  const options = dataList
     .filter(
       (key) =>
         key !== "senderAccount" &&
@@ -23,14 +24,20 @@ const ViewPassbookFilter = (props) => {
       "select[name='direction']"
     ).value;
 
-    if (directionValue !== "Direction") {
-      props.setDirection(directionValue);
-    }
-    if (sortByValue !== "Sort By") {
-      props.setSortBy(sortByValue);
-    }
-    props.setFromDate(fromValue);
-    props.setToDate(toValue);
+    // if (directionValue !== "Direction") {
+    //   props.setDirection(directionValue);
+    // }
+    // if (sortByValue !== "Sort By") {
+    //   props.setSortBy(sortByValue);
+    // }
+    // props.setFromDate(fromValue);
+    // props.setToDate(toValue);
+    const updatedParams=Object.fromEntries(searchParams);
+        updatedParams.sortBy=sortByValue;
+        updatedParams.direction=directionValue;
+        updatedParams.from=fromValue
+        updatedParams.to=toValue
+        setSearchParams(updatedParams);
   };
 
   const reset = () => {

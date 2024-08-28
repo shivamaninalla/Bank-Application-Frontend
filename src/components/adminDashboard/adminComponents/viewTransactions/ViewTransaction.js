@@ -106,7 +106,7 @@ const ViewTransaction = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page")) || 0;
   const size = parseInt(searchParams.get("size")) || 5;
-  const sortBy = searchParams.get("sortBy") || "firstName";
+  const sortBy = searchParams.get("sortBy") || "id";
   const direction = searchParams.get("direction") || "asc";
   //   const [from, setFromDate] = useState("");
   //   const [to, setToDate] = useState("");
