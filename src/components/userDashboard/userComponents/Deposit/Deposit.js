@@ -23,7 +23,11 @@ const Deposit = () => {
         console.log("Fetched accounts:", data);
         setAccounts(Array.isArray(data) ? data : []); // Ensure it's an array
       } catch (error) {
-        console.error("Error fetching accounts:", error);
+        // console.error("Error fetching accounts:", error);
+        const statusCode=error.statusCode || "Unknown";
+        const errorType=error.type||"Error"
+        const message=error.message|| "Error found"
+        failure(`error ${statusCode}: ${errorType}: ${message}`)
         setAccounts([]); // Fallback to empty array on error
       }
     };

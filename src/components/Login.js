@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signin } from "../services/AuthenticationServices";
-import './Login.css'
-import { useRef } from "react";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getUserByEmail } from "../services/CustomerServices";
-import { ValidationError,NotFoundError,UnAuthorized } from "../utils/error/ApiError";
+import './Login.css';
+import validator from "validator";
+import { failure } from "../utils/Toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,6 +17,11 @@ const Login = () => {
 
     const email = formRef.current.querySelector("input[type='email']").value;
     const password = formRef.current.querySelector("input[type='password']").value;
+
+    if(!validator.isEmail(email)){
+      failure("Please enter valid email")
+    }
+    
 
     try {
       const response = await signin(email, password);
@@ -31,29 +36,19 @@ const Login = () => {
         if (roles.includes("ROLE_ADMIN")) {
           navigate("/admin-dashboard");
         } else {
-          const user=await getUserByEmail(response.data.email);
-          const id=user.userId
-          localStorage.setItem('fullName',user.userName)
-          localStorage.setItem('id',id)
-          localStorage.setItem('email',user.email)
+          const user = await getUserByEmail(response.data.email);
+          const id = user.userId;
+          localStorage.setItem('fullName', user.userName);
+          localStorage.setItem('id', id);
+          localStorage.setItem('email', user.email);
           navigate(`/user-dashboard/${id}`);
         }
       }
     } catch (error) {
-      if (error instanceof NotFoundError || error instanceof UnAuthorized || error instanceof ValidationError) {
-        localStorage.setItem('errorDetails', JSON.stringify({
-          statusCode: error.statusCode,
-          errorType: error.message,
-          message: error.specificMessage
-        }));
-      } else {
-        localStorage.setItem('errorDetails', JSON.stringify({
-          statusCode: 500,
-          errorType: "Unknown Error",
-          message: "An unexpected error occurred."
-        }));
-      }
-      navigate('/error');
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

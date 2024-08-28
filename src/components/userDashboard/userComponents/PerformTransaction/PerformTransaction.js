@@ -5,6 +5,7 @@ import {failure,success} from '../../../../utils/Toast'
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../../../../services/AuthenticationServices';
+import { toast } from 'react-toastify';
 
 const PerformTransaction = () => {
   const [accounts, setAccounts] = useState([]);
@@ -19,7 +20,11 @@ const PerformTransaction = () => {
         const data = await fetchAllAccounts();
         setAccounts(data);
       } catch (error) {
-        console.error("Error fetching accounts:", error);
+        // console.error("Error fetching accounts:", error);
+        const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}`);
       }
     };
 
@@ -30,11 +35,19 @@ const PerformTransaction = () => {
     e.preventDefault();
     if (!senderAccount || !receiverAccount || !amount) {
       failure("All fields are required.");
-      return;
+      // const statusCode = error.statusCode || "Unknown";
+      // const errorType = error.type || "Error";
+      // const message = error.message || "Error found";
+      // toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
+      // return;
     }
     if (isNaN(amount) || amount <= 0) {
       failure("Amount must be a positive number.");
-      return;
+      // const statusCode = error.statusCode || "Unknown";
+      // const errorType = error.type || "Error";
+      // const message = error.message || "Error found";
+      // toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
+      // return;
     }
 
     try {
@@ -44,7 +57,11 @@ const PerformTransaction = () => {
       setReceiverAccount("");
       setAmount("");
     } catch (error) {
-      failure("Failed to perform transaction.")
+      // failure("Failed to perform transaction.")
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
   useEffect(() => {

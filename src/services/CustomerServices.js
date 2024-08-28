@@ -1,4 +1,6 @@
 import axios from "axios";
+import { NotFoundError,InternalServerError,ValidationError,AlreadyAssigned } from "../utils/error/ApiError";
+
 export const getUserByEmail = async (email) => {
   try {
     const response = await axios.get(
@@ -11,7 +13,13 @@ export const getUserByEmail = async (email) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 };
 
@@ -43,10 +51,15 @@ export const fetchPassbook = async (
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 };
-
 
 export const fetchAllAccounts = async () => {
   try {
@@ -57,11 +70,15 @@ export const fetchAllAccounts = async () => {
     });
     return response.data.content; // Ensure this is an array
   } catch (error) {
-    console.error("Error fetching accounts:", error);
-    throw error;
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 };
-
 
 export const performTransaction = async (
   senderAccount,
@@ -86,11 +103,21 @@ export const performTransaction = async (
     console.log("Transaction response:", response);
     return response.data;
   } catch (error) {
-    console.error("Transaction error:", error);
-    throw error;
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===400){
+        throw new ValidationError(message);
+      }
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      if(status===409){
+        throw new AlreadyAssigned(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 };
-
 export const depositAmount = async (accountNumber, amount) => {
   try {
     const response = await axios.put(
@@ -107,7 +134,19 @@ export const depositAmount = async (accountNumber, amount) => {
     );
     return response;
   } catch (error) {
-    console.error(error);
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===400){
+        throw new ValidationError(message);
+      }
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      if(status===409){
+        throw new AlreadyAssigned(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 };
 
@@ -151,7 +190,19 @@ export const updateUser=async(firstName,lastName,email)=>{
     return response;
   }
   catch(error){
-    console.error(error);
+    if(error && error.response){
+      const {status,message}=error.response.data;
+      if(status===409){
+        throw new AlreadyAssigned(message);
+      }
+      if(status===404){
+        throw new NotFoundError(message);
+      }
+      if(status===400){
+        throw new ValidationError(message);
+      }
+      throw new InternalServerError("Internal Server Error");
+    }
   }
 }
 

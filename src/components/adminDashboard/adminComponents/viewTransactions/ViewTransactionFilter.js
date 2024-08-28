@@ -1,6 +1,6 @@
 import React from "react";
 import "./ViewTransactionFilter.css";
-
+import { useState,useEffect } from "react";
 // const ViewTransactionFilter = (props) => {
 //   const options = props.dataList
 //     .filter(
@@ -98,6 +98,10 @@ import "./ViewTransactionFilter.css";
 // };
 const ViewTransactionFilter = ({ data,searchParams,setSearchParams}) => {
   const options = ["id", "amount","transactionDate"].map((key) => <option key={key} value={key}>{key}</option>);
+  const [from,setFrom]=useState(searchParams.get("from")|| "");
+    const [to,setTo]=useState(searchParams.get("to")|| "");
+    const [sortBy,setSortBy]=useState(searchParams.get("sortBy")|| "Sort By");
+    const [direction,setDirection]=useState(searchParams.get("direction")|| "Direction");
 
   const search = () => {
       const fromValue = document.querySelector("input[name='from']").value;
@@ -113,6 +117,9 @@ const ViewTransactionFilter = ({ data,searchParams,setSearchParams}) => {
     //   }
     //   setFromDate(fromValue);
     //   setToDate(toValue);
+
+
+   
       const updatedParams=Object.fromEntries(searchParams);
         updatedParams.sortBy=sortByValue;
         updatedParams.direction=directionValue;
@@ -121,11 +128,23 @@ const ViewTransactionFilter = ({ data,searchParams,setSearchParams}) => {
         setSearchParams(updatedParams);
   };
 
+  useEffect(()=>{
+    // setFrom(searchParams.get("from")|| "")
+    // setTo(searchParams.get("to")|| "")
+    setSortBy(searchParams.get("sortBy")|| "Sort By")
+    setDirection(searchParams.get("direction")|| "Direction")
+},[searchParams])
+
   const reset = () => {
-      document.querySelector("input[name='from']").value = "";
-      document.querySelector("input[name='to']").value = "";
-      document.querySelector("select[name='sortBy']").value = "Sort By";
-      document.querySelector("select[name='direction']").value = "Direction";
+    //   document.querySelector("input[name='from']").value = "";
+    //   document.querySelector("input[name='to']").value = "";
+    //   document.querySelector("select[name='sortBy']").value = "Sort By";
+    //   document.querySelector("select[name='direction']").value = "Direction";
+     setFrom("")
+        setTo("")
+        setSortBy("SortBy")
+        setDirection("Direction")
+        setSearchParams([]);
       setSearchParams([]);
 
   };
@@ -134,20 +153,35 @@ const ViewTransactionFilter = ({ data,searchParams,setSearchParams}) => {
       <div className="filter-container">
           <div className="input-container">
               <label>From Date:</label>
-              <input type="date" name="from" />
+              <input type="date" name="from" value={from}
+              onChange={(e)=>{
+                setFrom(e.target.value)
+              }}
+              />
           </div>
           <div className="input-container">
               <label>To Date:</label>
-              <input type="date" name="to" />
+              <input type="date" name="to" value={to}
+              onChange={(e)=>{
+                setTo(e.target.value)
+              }}/>
           </div>
           <div className="input-container">
-              <select name="sortBy">
+              <select name="sortBy"
+              value={sortBy}
+              onChange={(e)=>{
+                setSortBy(e.target.value)
+              }}>
                   <option>Sort By</option>
                   {options}
               </select>
           </div>
           <div className="input-container">
-              <select name="direction">
+              <select name="direction"
+              value={direction}
+              onChange={(e)=>{
+                setDirection(e.target.value)
+              }}>
                   <option>Direction</option>
                   <option value="asc">Ascending</option>
                   <option value="desc">Descending</option>

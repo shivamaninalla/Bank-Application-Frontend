@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ConfirmAccountCreation.css';
 import { success, failure } from '../../../../utils/Toast';
 import { CreateAccount } from '../../../../services/AdminServices';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
 const ConfirmAccountCreation = () => {
   const navigate = useNavigate();
@@ -25,8 +25,12 @@ const ConfirmAccountCreation = () => {
         failure("Failed to Create Account");
       }
     } catch (error) {
-      console.error("Error creating account:", error);
-      failure("An error occurred while creating the account");
+      // console.error("Error creating account:", error);
+      // failure("An error occurred while creating the account");
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

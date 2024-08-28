@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Dropdown.css'
 const Dropdown = (props) => {
     const {  data, searchParams,setSearchParams} = props;
-    const { totalElements, size } = data;
+    const [size,setSize]=useState(parseInt(searchParams.get("size") )|| 5)
+
+    useEffect(()=>{
+      setSize(parseInt(searchParams.get("size") )|| 5)
+    },[searchParams])
+
+    // const { totalElements, size } = data;
     const options = () => {
       const sizes = [];
       for (let i = 1; i < props.data.totalElements; i++) {
@@ -27,7 +33,7 @@ const Dropdown = (props) => {
 
   return (
     <div className="dropdown-container">
-            <select id="dropdown" className="form-select dropdown" aria-label="Select page size" onChange={handleChange}>
+            <select id="dropdown" className="form-select dropdown" aria-label="Select page size" onChange={handleChange} value={size}>
                 <option value="" disabled selected>
                     Element size
                 </option>

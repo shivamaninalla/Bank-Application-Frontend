@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import "./ViewCustomers.css";
 import ViewCustomersFilter from "../viewCustomers/ViewCustomersFilter";
 import { verifyAdmin } from "../../../../services/AuthenticationServices";
+import { toast } from "react-toastify";
 
 const ViewCustomers = () => {
   const navigate = useNavigate();
@@ -33,7 +34,11 @@ const ViewCustomers = () => {
         setCustomers([]);
       }
     } catch (error) {
-      console.error("Error fetching customers:", error);
+      // console.error("Error fetching customers:", error);
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

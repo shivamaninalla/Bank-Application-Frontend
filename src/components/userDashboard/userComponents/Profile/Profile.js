@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUserByEmail, updateUser } from '../../../../services/CustomerServices';
-import { failure, success } from '../../../../utils/Toast'; 
-import { ToastContainer } from 'react-toastify';
+import { success } from '../../../../utils/Toast'; 
+import { ToastContainer, toast } from 'react-toastify';
 import './Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../../../../services/AuthenticationServices';
@@ -21,9 +21,12 @@ const Profile = () => {
         const fullName = localStorage.getItem("fullName").split(" ");
         setFirstName(fullName[0] || "");
         setLastName(fullName[1] || "");
-        console.log(data)
+        console.log(data);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        const statusCode = error.statusCode || "Unknown";
+        const errorType = error.type || "Error";
+        const message = error.message || "Error found";
+        toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
       }
     };
 
@@ -32,11 +35,16 @@ const Profile = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      const response = await verifyUser(localStorage.getItem("authToken"));
-      if (!response.data) {
+      try {
+        const response = await verifyUser(localStorage.getItem("authToken"));
+        if (!response.data) {
+          navigate('/');
+        } else {
+          setIsUser(true);
+        }
+      } catch (error) {
+        toast.error("User verification failed.");
         navigate('/');
-      } else {
-        setIsUser(true);
       }
     };
 
@@ -45,15 +53,17 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   const response= await updateUser(firstName,lastName,user.email);
-    // Add any specific form submission logic if needed
-    console.log(response)
-    if(response){
-      success("Profile information submitted.");
 
-    }
-    else{
-      failure("Not updated")
+    try {
+      const response = await updateUser(firstName, lastName, user.email);
+      if (response) {
+        success("Profile information submitted.");
+      }
+    } catch (error) {
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

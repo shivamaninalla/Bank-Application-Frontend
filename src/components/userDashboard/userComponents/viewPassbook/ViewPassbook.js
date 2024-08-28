@@ -8,6 +8,7 @@ import { sanitizeTransactionData } from "../../../../utils/helpers/SanitizeData"
 import ViewPassbookFilter from "./viewPassbookComponents/ViewPassbookFilter";
 import { fetchPassbook } from "../../../../services/CustomerServices";
 import { verifyUser } from "../../../../services/AuthenticationServices";
+import { toast } from "react-toastify";
 const ViewPassbook = () => {
   const routeParams=useParams();
   const accountNumber=routeParams.accountNumber;
@@ -19,7 +20,7 @@ const ViewPassbook = () => {
   const [searchParams,setSearchParams]=useSearchParams();
   const page=parseInt(searchParams.get("page") ) || 0;
   const size=parseInt(searchParams.get("size") ) || 5;
-  const sortBy=(searchParams.get("sortBy") ) || "firstName";
+  const sortBy=(searchParams.get("sortBy") ) || "id";
   const direction=(searchParams.get("direction") ) || "asc";
   const from=(searchParams.get("from") ) || "";
   const to=(searchParams.get("to") ) || "";
@@ -47,7 +48,11 @@ const ViewPassbook = () => {
         setTransactions([]);
       }
     } catch (error) {
-      console.error("Error fetching customers:", error);
+      // console.error("Error fetching customers:", error);
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

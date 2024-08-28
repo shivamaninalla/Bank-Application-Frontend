@@ -1,0 +1,102 @@
+.view-transactions-container {
+  color: #ff0000;
+  background-color: #ffe6e6;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.view-transactions-container .back-button {
+  color: #ff0000;
+  background-color: #fff0f0;
+  border: 2px solid #ff0000;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.view-transactions-container .back-button:hover {
+  background-color: #ffcccc;
+}
+
+.view-transactions-container .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ff0000;
+}
+
+.view-transactions-container .filter-section,
+.view-transactions-container .table-section {
+  margin-top: 20px;
+}
+
+.view-transactions-container label,
+.view-transactions-container input,
+.view-transactions-container select {
+  color: #ff0000;
+}
+
+.view-transactions-container input,
+.view-transactions-container select {
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.view-transactions-container input:focus,
+.view-transactions-container select:focus {
+  outline: none;
+  border-color: #ff6666;
+}
+
+.view-transactions-container .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-transactions-container .table th,
+.view-transactions-container .table td {
+  border: 1px solid #ff0000;
+  padding: 12px;
+  text-align: left;
+}
+
+.view-transactions-container .table th {
+  background-color: #ffcccc;
+  color: #ff0000;
+}
+
+.view-transactions-container .table td {
+  background-color: #ffe6e6;
+  color: #ff0000;
+}
+
+.view-transactions-container .table tr:hover {
+  background-color: #ffcccc;
+}
+
+.view-transactions-container .pagination {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.view-transactions-container .pagination button {
+  background-color: #fff0f0;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-transactions-container .pagination button:hover {
+  background-color: #ffcccc;
+}
+
+.view-transactions-container .pagination button:disabled {
+  background-color: #ffe6e6;
+  cursor: not-allowed;
+}

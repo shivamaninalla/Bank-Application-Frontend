@@ -5,7 +5,7 @@ import Modal from "../../utils/Modal/Modal";
 import AccountModal from "../../utils/Modal/AccountModal";
 import { GetUserById, GetCustomerById } from "../../services/AdminServices";
 import { verifyAdmin } from "../../services/AuthenticationServices";
-
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -54,8 +54,12 @@ const AdminDashboard = () => {
       //   navigate('/error');
       //   handleCloseAccountModal();
       // }
-    } catch {
-      navigate('/error');
+    } catch(error) {
+      // navigate('/error');
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
       handleCloseAccountModal();
     }
   };

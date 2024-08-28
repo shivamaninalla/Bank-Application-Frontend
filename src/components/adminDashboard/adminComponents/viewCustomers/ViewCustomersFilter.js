@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ViewCustomersFilter.css'
 
 const ViewCustomersFilter = (props) => {
     const { data,searchParams,setSearchParams} = props;
+
+    // const [from,setFrom]=useState(searchParams.get("from")|| "");
+    // const [to,setTo]=useState(searchParams.get("to")|| "");
+    const [sortBy,setSortBy]=useState(searchParams.get("sortBy")|| "Sort By");
+    const [direction,setDirection]=useState(searchParams.get("direction")|| "Direction");
+
+
+    useEffect(()=>{
+        // setFrom(searchParams.get("from")|| "")
+        // setTo(searchParams.get("to")|| "")
+        setSortBy(searchParams.get("sortBy")|| "Sort By")
+        setDirection(searchParams.get("direction")|| "Direction")
+    },[searchParams])
+
     let options = [];
 
     const keyMapping = {
-        "Customer ID": "id",
+        // "Customer ID": "id",
         "First Name": "firstName",
         "Last Name": "lastName"
     };
@@ -36,8 +50,12 @@ const ViewCustomersFilter = (props) => {
 
 
     const reset = () => {
-        document.querySelector("select[name='sortBy']").value = "Sort By";
-        document.querySelector("select[name='direction']").value = "Direction";
+        // document.querySelector("select[name='sortBy']").value = "Sort By";
+        // document.querySelector("select[name='direction']").value = "Direction";
+        // setFrom("")
+        // setTo("")
+        setSortBy("SortBy")
+        setDirection("Direction")
         setSearchParams([]);
     };
 
@@ -51,6 +69,10 @@ const ViewCustomersFilter = (props) => {
                         aria-label="Sort By"
                         name="sortBy"
                         id="sortBy"
+                        value={sortBy}
+                        onChange={(e)=>{
+                            setSortBy(e.target.value)
+                        }}
                     >
                         <option value="" disabled>
                             Sort By
@@ -65,6 +87,10 @@ const ViewCustomersFilter = (props) => {
                         aria-label="Direction"
                         name="direction"
                         id="direction"
+                        value={direction}
+                        onChange={(e)=>{
+                            setDirection(e.target.value)
+                        }}
                     >
                         <option value="" disabled>
                             Direction

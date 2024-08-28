@@ -6,6 +6,7 @@ import { sanitizeTransactionData } from "../../../../utils/helpers/SanitizeData"
 import { getAllTransactions as fetchAllTransactions } from "../../../../services/AdminServices";
 import ViewTransactionFilter from "./ViewTransactionFilter";
 import "./viewTransaction.css";
+import { toast } from "react-toastify";
 
 // const ViewTransaction = () => {
 //   const navigate = useNavigate();
@@ -132,7 +133,11 @@ const ViewTransaction = () => {
         setTransactions([]);
       }
     } catch (error) {
-      console.error("Error fetching transactions:", error);
+      // console.error("Error fetching transactions:", error);
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
   };
 

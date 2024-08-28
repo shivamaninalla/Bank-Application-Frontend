@@ -4,7 +4,8 @@ import { signup } from "../services/AuthenticationServices";
 import './Register.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { success,failure } from "../utils/Toast";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
+import validator from "validator";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -17,6 +18,20 @@ const Register = () => {
     const email = formRef.current.querySelector("input[name='email']").value;
     const password = formRef.current.querySelector("input[name='password']").value;
     const admin = formRef.current.querySelector("input[name='isAdmin']").checked;
+    
+    if(!validator.isEmail(email)){
+      failure("Please enter valid email")
+      return;
+    }
+    if(!validator.isStrongPassword(password,{minLength:3})){
+      failure("Please enter valid password")
+      return;
+    }
+    if(!validator.isAlpha(name)){
+      failure("Please enter valid name")
+      return;
+    }
+    
 
     try {
       const response=await signup({ name, email, password, admin });
@@ -29,8 +44,12 @@ const Register = () => {
       }
       
     } catch (error) {
-      failure("Registration failed. Please try again.");
-      console.error("Registration failed", error.message);
+      // failure("Registration failed. Please try again.");
+      // console.error("Registration failed", error.message);
+      const statusCode = error.statusCode || "Unknown";
+      const errorType = error.type || "Error";
+      const message = error.message || "Error found";
+      toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
     }
 
 

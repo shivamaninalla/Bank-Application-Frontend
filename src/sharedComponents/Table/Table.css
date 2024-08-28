@@ -26,6 +26,7 @@
   padding: 14px;
   font-size: 1rem;
   font-weight: 400;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .table tr:nth-child(even) td {
@@ -41,12 +42,14 @@
   cursor: pointer;
 }
 
+/* Action Button Styles */
 .deactivate-button, .activate-button {
   background-color: #b00020; /* Red color */
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  margin-right: 5px; /* Space between buttons */
 }
 
 .deactivate-button:hover, .activate-button:hover {
@@ -55,12 +58,16 @@
 
 .pagination-section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Align dropdown and pagination side by side */
+  align-items: center;
   width: 100%;
   max-width: 1270px;
   margin-top: 1.5rem;
   padding: 0 1rem;
+}
+
+.custom-dropdown {
+  margin-right: auto; /* Push dropdown to the left */
 }
 
 .button {
