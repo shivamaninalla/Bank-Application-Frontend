@@ -43,8 +43,16 @@ const ViewCustomersFilter = (props) => {
         console.log(sortByValue);
         console.log(directionValue)
         const updatedParams=Object.fromEntries(searchParams);
-        updatedParams.sortBy=sortByValue;
-        updatedParams.direction=directionValue;
+        if (sortByValue !== "Sort By") {
+            updatedParams.sortBy=sortByValue;
+
+        
+            }
+            if ( directionValue !== "Direction") {
+                updatedParams.direction=directionValue;    
+            
+                }
+        
         setSearchParams(updatedParams);
     };
 

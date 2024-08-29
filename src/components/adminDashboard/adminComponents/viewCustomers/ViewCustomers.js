@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { sanitizeData } from "../../../../utils/helpers/SanitizeData";
-import { getAllCustomers as fetchAllCustomers } from "../../../../services/AdminServices";
+import { getAllCustomers as fetchAllCustomers } from "../../../../services/adminServices";
 import Table from "../../../../sharedComponents/Table/Table";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./ViewCustomers.css";
 import ViewCustomersFilter from "../viewCustomers/ViewCustomersFilter";
-import { verifyAdmin } from "../../../../services/AuthenticationServices";
+import { verifyAdmin } from "../../../../services/authenticationServices";
 import { toast } from "react-toastify";
 
 const ViewCustomers = () => {

@@ -54,7 +54,7 @@ export const getAllTransactions = async (
   }
 };
 
-export const GetCustomerById = async(customerID) => {
+export const getCustomerById = async(customerID) => {
   try {
     const response = await axios.get(`http://localhost:8082/api/admin/${customerID}`,
       {
@@ -77,7 +77,7 @@ export const GetCustomerById = async(customerID) => {
   };
 
 
-export const CreateCustomer = async (firstName, lastName, userId) => {
+export const createCustomer = async (firstName, lastName, userId) => {
   try {
     const response = await axios.post(
       `http://localhost:8082/api/admin/add/${userId}`,
@@ -109,10 +109,10 @@ export const CreateCustomer = async (firstName, lastName, userId) => {
 
 
   
-  export const CreateAccount = async (bankId, customerId) => {
+  export const createAccount = async (bankId, customerId) => {
     try {
       const response = await axios.post(
-        `http://localhost:8082/api/admin/${bankId}/account/${customerId}`,
+        `http://localhost:8082/api/admin/${customerId}/account/${bankId}`,
         {}, 
         {
           headers: {
@@ -136,9 +136,9 @@ export const CreateCustomer = async (firstName, lastName, userId) => {
     }
   };
   
-export const ActivateAccount = () => {};
-export const DeactivateAccount = () => {};
-export const ActivateCustomer = async (customerID) => {
+export const activateAccount = () => {};
+export const deactivateAccount = () => {};
+export const activateCustomer = async (customerID) => {
   try {
     const response = await axios.put(
       `http://localhost:8082/api/admin/active/${customerID}`,
@@ -164,10 +164,10 @@ export const ActivateCustomer = async (customerID) => {
   }
 };
 
-export const GetUserById = async (userID) => {
+export const getUserById = async (userID) => {
   try {
     const response = await axios.get(
-      `http://localhost:8082/api/admin/${userID}`,
+      `http://localhost:8082/api/admin/users/${userID}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -186,7 +186,7 @@ export const GetUserById = async (userID) => {
   }
 };
 
-export const DeactivateCustomer = async (customerID) => {
+export const deactivateCustomer = async (customerID) => {
   try {
     const response = await axios.delete(
       `http://localhost:8082/api/admin/customer/${customerID}`,

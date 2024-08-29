@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './PerformTransaction.css';
-import { fetchAllAccounts,performTransaction } from '../../../../services/CustomerServices';
+import { fetchAllAccounts,performTransaction } from '../../../../services/customerServices';
 import {failure,success} from '../../../../utils/Toast'
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from '../../../../services/AuthenticationServices';
+import { verifyUser } from '../../../../services/authenticationServices';
 import { toast } from 'react-toastify';
+import validator from 'validator';
 
 const PerformTransaction = () => {
   const [accounts, setAccounts] = useState([]);
@@ -35,14 +36,21 @@ const PerformTransaction = () => {
     e.preventDefault();
     if (!senderAccount || !receiverAccount || !amount) {
       failure("All fields are required.");
+      return;
+
       // const statusCode = error.statusCode || "Unknown";
       // const errorType = error.type || "Error";
       // const message = error.message || "Error found";
       // toast.error(`Error ${statusCode}: ${errorType}: ${message}`);
       // return;
     }
+    if(!validator.isNumeric(receiverAccount)){
+      failure("Please enter valid recevier account number")
+      return;
+    }
     if (isNaN(amount) || amount <= 0) {
       failure("Amount must be a positive number.");
+      return;
       // const statusCode = error.statusCode || "Unknown";
       // const errorType = error.type || "Error";
       // const message = error.message || "Error found";
@@ -135,7 +143,24 @@ const PerformTransaction = () => {
           Transfer
         </button>
       </form>
-      <ToastContainer/>
+      <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "black", // Light red background for the toast
+    color: "white", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
       </>)}
     </div>
   );

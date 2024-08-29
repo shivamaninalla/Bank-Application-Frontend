@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './UserDashboard.css'; 
 import ViewPassbookModal from './userComponents/viewPassbook/viewPassbookComponents/ViewPassbookModal';
-import { verifyUser } from '../../services/AuthenticationServices';
+import { verifyUser } from '../../services/authenticationServices';
 import { useEffect } from 'react';
 
 const UserDashboard = () => {

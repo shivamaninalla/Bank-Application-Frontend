@@ -6,8 +6,8 @@ import Table from "../../../../sharedComponents/Table/Table";
 import "./ViewPassbook.css";
 import { sanitizeTransactionData } from "../../../../utils/helpers/SanitizeData";
 import ViewPassbookFilter from "./viewPassbookComponents/ViewPassbookFilter";
-import { fetchPassbook } from "../../../../services/CustomerServices";
-import { verifyUser } from "../../../../services/AuthenticationServices";
+import { fetchPassbook } from "../../../../services/customerServices";
+import { verifyUser } from "../../../../services/authenticationServices";
 import { toast } from "react-toastify";
 const ViewPassbook = () => {
   const routeParams=useParams();

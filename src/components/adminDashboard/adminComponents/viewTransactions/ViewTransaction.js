@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Table from "../../../../sharedComponents/Table/Table";
-import { verifyAdmin } from "../../../../services/AuthenticationServices";
+import { verifyAdmin } from "../../../../services/authenticationServices";
 import { sanitizeTransactionData } from "../../../../utils/helpers/SanitizeData";
-import { getAllTransactions as fetchAllTransactions } from "../../../../services/AdminServices";
+import { getAllTransactions as fetchAllTransactions } from "../../../../services/adminServices";
 import ViewTransactionFilter from "./ViewTransactionFilter";
 import "./viewTransaction.css";
 import { toast } from "react-toastify";

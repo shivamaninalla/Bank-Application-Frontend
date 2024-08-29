@@ -23,6 +23,7 @@ const ViewPassbookFilter = (props) => {
     const directionValue = document.querySelector(
       "select[name='direction']"
     ).value;
+    const updatedParams=Object.fromEntries(searchParams);
 
     // if (directionValue !== "Direction") {
     //   props.setDirection(directionValue);
@@ -30,13 +31,16 @@ const ViewPassbookFilter = (props) => {
     // if (sortByValue !== "Sort By") {
     //   props.setSortBy(sortByValue);
     // }
-    // props.setFromDate(fromValue);
-    // props.setToDate(toValue);
-    const updatedParams=Object.fromEntries(searchParams);
+    
+    if (fromValue !== "") {
+      updatedParams.from=fromValue
+    }
+    if (toValue !== "") {
+      updatedParams.to=toValue
+    }
+   
         updatedParams.sortBy=sortByValue;
         updatedParams.direction=directionValue;
-        updatedParams.from=fromValue
-        updatedParams.to=toValue
         setSearchParams(updatedParams);
   };
 

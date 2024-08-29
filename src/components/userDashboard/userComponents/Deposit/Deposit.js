@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   fetchAllAccounts,
   depositAmount,
-} from "../../../../services/CustomerServices"; // Adjust the import path as needed
+} from "../../../../services/customerServices"; // Adjust the import path as needed
 import { failure, success } from "../../../../utils/Toast";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./Deposit.css";
-import { verifyUser } from "../../../../services/AuthenticationServices";
+import { verifyUser } from "../../../../services/authenticationServices";
 
 const Deposit = () => {
   const [accounts, setAccounts] = useState([]);
@@ -120,7 +120,24 @@ const Deposit = () => {
               Deposit
             </button>
           </form>
-          <ToastContainer />
+          <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "black", // Light red background for the toast
+    color: "white", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
         </>
       )}
     </div>

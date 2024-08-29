@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signup } from "../services/AuthenticationServices";
+import { signup } from "../services/authenticationServices";
 import './Register.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { success,failure } from "../utils/Toast";
@@ -23,10 +23,10 @@ const Register = () => {
       failure("Please enter valid email")
       return;
     }
-    if(!validator.isStrongPassword(password,{minLength:3})){
-      failure("Please enter valid password")
-      return;
-    }
+    // if(!validator.isStrongPassword(password,{minLength:3})){
+    //   failure("Please enter valid password")
+    //   return;
+    // }
     if(!validator.isAlpha(name)){
       failure("Please enter valid name")
       return;
@@ -80,7 +80,24 @@ const Register = () => {
           Already have an account? <Link to='/'>Login</Link>
         </div>
       </form>
-      <ToastContainer/>
+      <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "black", // Light red background for the toast
+    color: "white", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
     </div>
   );
 };

@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
 import Modal from "../../utils/Modal/Modal";
 import AccountModal from "../../utils/Modal/AccountModal";
-import { GetUserById, GetCustomerById } from "../../services/AdminServices";
-import { verifyAdmin } from "../../services/AuthenticationServices";
+import { getUserById, getCustomerById } from "../../services/adminServices";
+import { verifyAdmin } from "../../services/authenticationServices";
+import { failure } from "../../utils/Toast";
 import { toast } from "react-toastify";
+
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const AdminDashboard = () => {
 
   const handleAddCustomer = async () => {
     try {
-      const response = await GetUserById(userId);
+      const response = await getUserById(userId);
       if (response) {
         navigate(`/admin-dashboard/add-customer/${userId}`);
         handleCloseModal();
@@ -37,15 +39,20 @@ const AdminDashboard = () => {
         navigate('/error');
         handleCloseModal();
       }
-    } catch {
+    } catch(error) {
       navigate('/error');
+      // const statusCode = error.statusCode || "Unknown";
+      // const errorType = error.type || "Error";
+      // const message = error.message || "Error found";
+      // failure(`Error ${statusCode}: ${errorType}: ${message}`);
+      
       handleCloseModal();
     }
   };
 
   const handleAddAccount = async () => {
     try {
-      const response = await GetCustomerById(customerId);
+      const response = await getCustomerById(customerId);
       if (response) {
         navigate(`/admin-dashboard/confirm-account-creation?bankId=${bankId}&customerId=${customerId}`);
         handleCloseAccountModal();

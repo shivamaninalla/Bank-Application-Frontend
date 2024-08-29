@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signin } from "../services/AuthenticationServices";
+import { signin } from "../services/authenticationServices";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getUserByEmail } from "../services/CustomerServices";
+import { getUserByEmail } from "../services/customerServices";
 import './Login.css';
 import validator from "validator";
 import { failure } from "../utils/Toast";
@@ -69,7 +69,24 @@ const Login = () => {
           Login
         </button>
       </form>
-      <ToastContainer />
+      <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "black", // Light red background for the toast
+    color: "white", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
     </div>
   );
 };

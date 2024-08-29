@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { CreateCustomer, GetUserById } from "../../../../services/AdminServices";
+import { createCustomer, GetUserById } from "../../../../services/adminServices";
 import "./AddCustomer.css";
-import { verifyAdmin } from "../../../../services/AuthenticationServices";
-import { toast } from "react-toastify";
+import { verifyAdmin } from "../../../../services/authenticationServices";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddCustomer = () => {
   const { userId } = useParams();
@@ -39,7 +39,7 @@ const AddCustomer = () => {
     e.preventDefault();
     try {
       console.log("Creating customer with:", { firstName, lastName, userId });
-      const result = await CreateCustomer(firstName, lastName, userId);
+      const result = await createCustomer(firstName, lastName, userId);
       console.log("Customer created successfully:", result);
 
       localStorage.setItem(
@@ -51,7 +51,7 @@ const AddCustomer = () => {
       );
       navigate("/success");
     } catch (error) {
-      // console.error("Failed to create customer:", error);
+      console.error("Failed to create customer:", error);
       const statusCode = error.statusCode || "Unknown";
       const errorType = error.type || "Error";
       const message = error.message || "Error found";
@@ -100,6 +100,24 @@ const AddCustomer = () => {
               Submit
             </button>
           </form>
+          <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "black", // Light red background for the toast
+    color: "white", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
         </>
       )}
     </div>

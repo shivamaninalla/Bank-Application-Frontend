@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
-import { fetchAllAccounts } from '../../../../../services/CustomerServices';
+import { fetchAllAccounts } from '../../../../../services/customerServices';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ViewPassbookModal = ({

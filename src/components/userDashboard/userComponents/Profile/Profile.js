@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getUserByEmail, updateUser } from '../../../../services/CustomerServices';
+import { getUserByEmail, updateUser } from '../../../../services/customerServices';
 import { success } from '../../../../utils/Toast'; 
 import { ToastContainer, toast } from 'react-toastify';
 import './Profile.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useNavigate } from 'react-router-dom';
-import { verifyUser } from '../../../../services/AuthenticationServices';
+import { verifyUser } from '../../../../services/authenticationServices';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -57,7 +59,7 @@ const Profile = () => {
     try {
       const response = await updateUser(firstName, lastName, user.email);
       if (response) {
-        success("Profile information submitted.");
+       success("Profile information submitted.");
       }
     } catch (error) {
       const statusCode = error.statusCode || "Unknown";
@@ -115,7 +117,25 @@ const Profile = () => {
               Submit
             </button>
           </form>
-          <ToastContainer />
+          <ToastContainer
+  style={{
+    width: "350px",
+    borderRadius: "8px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    color: "black", // Text color
+  }}
+  toastStyle={{
+    backgroundColor: "green", // Light red background for the toast
+    color: "black", // Dark red text color
+    borderRadius: "8px",
+    // boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+  }}
+  progressStyle={{
+    // background: "#f5c6cb", // Red progress bar
+  }}
+/>
+
         </>
       )}
     </div>
